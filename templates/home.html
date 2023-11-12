@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-<script type="text/javascript">
-	(function(){
-		var bsa_optimize=document.createElement('script');
-		bsa_optimize.type='text/javascript';
-		bsa_optimize.async=true;
-		bsa_optimize.src='https://cdn4.buysellads.net/pub/blockcypher.js?'+(new Date()-new Date()%600000);
-		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa_optimize);
-	})();
-</script>
 {% endblock extra_head %}
 
 {% block content %}
@@ -74,7 +65,16 @@
 <div class="bg-white">
   <div class="container">
     <div class="ad">
-      <div id="bsa-zone_1594060753150-6_123456"></div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8670884776365868"
+             crossorigin="anonymous"></script>
+      <!-- Main explorer -->
+      <ins class="adsbygoogle"
+             style="display:block;min-width:400px;max-width:970px;width:100%;height:90px"
+                  data-ad-client="ca-pub-8670884776365868"
+                       data-ad-slot="7521279835"></ins>
+      <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
   </div>
 
@@ -93,11 +93,6 @@
             <span class="mpsb">Ethereum</span>
           </a>
         </div>
-				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-					<a href="https://grinmint.com/explorer/" class="grin coin">
-						<span class="mpsb">Grin</span>
-					</a>
-				</div>
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
           <a href="{% url 'coin_overview' 'ltc' %}" class="ltc coin">
             <span class="mpsb">Litecoin</span>
@@ -211,7 +206,6 @@
         var sites = {
           piiko: "https://www.piiko.co",
           texcent: "http://texcent.com",
-          grinmint: "https://grinmint.com",
 					tradecore: "https://tradecore.com/"
         };
         var chosen_idx = Date.now() % ads.length;

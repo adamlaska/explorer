@@ -43,7 +43,8 @@ else:
 ALLOWED_HOSTS = [
         'live.blockcypher.com',
         'blockcypher.herokuapp.com',
-        'blockcypher-dev.herokuapp.com'
+        'blockcypher-dev.herokuapp.com',
+        'blockcypher-heroku-22.herokuapp.com',
         '127.0.0.1',
         'localhost'
         ]
@@ -58,13 +59,12 @@ IGNORABLE_404_URLS = (
     re.compile(r'^/robots\.txt$'),
 )
 
+
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -79,10 +79,9 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -173,7 +172,6 @@ if SITE_DOMAIN in (PRODUCTION_DOMAIN, STAGING_DOMAIN):
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     BASE_URL = 'https://%s' % SITE_DOMAIN
     # FIXME:
-    # SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     MIDDLEWARE += ('django.middleware.security.SecurityMiddleware',)
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -212,10 +210,6 @@ POSTMARK_TEST_MODE = os.getenv('POSTMARK_TEST_MODE', False)
 POSTMARK_API_KEY = os.getenv('POSTMARK_API_KEY')
 if not POSTMARK_API_KEY:
     print('WARNING: without a POSTMARK_API_KEY you cannot send emails')
-
-WEBHOOK_SECRET_KEY = os.getenv('WEBHOOK_SECRET_KEY')
-if not WEBHOOK_SECRET_KEY:
-    print('WARNING: without a WEBHOOK_SECRET_KEY you cannot receive webhooks')
 
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 
@@ -273,5 +267,4 @@ LOGGING = {
 if DEBUG:
     print('-'*75)
     print('SITE_DOMAIN is set to %s' % SITE_DOMAIN)
-    print("If you're using webhooks locally, be sure this is correct")
     print('-'*75)
